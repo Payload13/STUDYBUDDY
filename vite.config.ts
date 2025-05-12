@@ -9,29 +9,28 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  plugins: [
-    react(),
-    mode === 'development' &&
-    componentTagger(),
-  ].filter(Boolean),
+  plugins: [react(), mode === "development" && componentTagger()].filter(
+    Boolean
+  ),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
   optimizeDeps: {
-    include: ['pdfjs-dist']
+    include: ["pdfjs-dist"],
   },
   worker: {
-    format: 'es'
+    format: "es",
   },
+  assetsInclude: ["**/*.worker.js", "pdfjs-dist/build/pdf.worker.min.js"],
   build: {
     rollupOptions: {
       output: {
         manualChunks: {
-          pdfjs: ['pdfjs-dist']
-        }
-      }
-    }
-  }
+          pdfjs: ["pdfjs-dist"],
+        },
+      },
+    },
+  },
 }));
